@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card p-4 shadow-sm mx-auto" style="max-width: 600px;">
+        <h2 class="text-center">{{ exam_type.replace('_', ' ').title() }} Practice Test</h2>
+        <form method="POST">
+            {% for question in questions %}
+                <div class="mb-4">
+                    <h5>Question {{ loop.index }}: {{ question.question_text }}</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_a" value="{{ question.option_a }}" required>
+                        <label class="form-check-label" for="opt_{{ question.id }}_a">{{ question.option_a }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_b" value="{{ question.option_b }}">
+                        <label class="form-check-label" for="opt_{{ question.id }}_b">{{ question.option_b }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_c" value="{{ question.option_c }}">
+                        <label class="form-check-label" for="opt_{{ question.id }}_c">{{ question.option_c }}</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_d" value="{{ question.option_d }}">
+                        <label class="form-check-label" for="opt_{{ question.id }}_d">{{ question.option_d }}</label>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success w-100">Submit Answers</button>
+        </form>
+    </div>
+{% endblock %}

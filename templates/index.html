@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="text-center py-5 hero-section">
+        <h1 class="display-4 text-white">Practice Cloud Certification Exams</h1>
+        <p class="lead text-white">Test your skills with our free practice questions!</p>
+    </div>
+
+    <!-- AWS Section -->
+    <section class="container mb-5 aws-section">
+        <h2 class="mb-4 text-white">AWS Certifications</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">AWS Certified Cloud Practitioner</h5>
+                        <p class="card-text">Foundational knowledge of AWS Cloud concepts and services.</p>
+                        <a href="{{ url_for('test', exam_type='aws_cloud_practitioner') }}" class="btn btn-primary">Start Test</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">AWS Certified Solutions Architect - Associate</h5>
+                        <p class="card-text">Design and deploy scalable systems on AWS.</p>
+                        <a href="{{ url_for('test', exam_type='aws_solutions_architect') }}" class="btn btn-primary">Start Test</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">AWS Certified Data Engineer - Associate</h5>
+                        <p class="card-text">Focus on data pipelines, analytics, and AWS data services.</p>
+                        <a href="{{ url_for('test', exam_type='aws_data_engineer') }}" class="btn btn-primary">Start Test</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Azure Section -->
+    <section class="container mb-5 azure-section">
+        <h2 class="mb-4 text-white">Azure Certifications</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Microsoft Azure Fundamentals (AZ-900)</h5>
+                        <p class="card-text">Basic understanding of Azure cloud services.</p>
+                        <a href="{{ url_for('test', exam_type='azure_fundamentals') }}" class="btn btn-primary">Start Test</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SnowPro Section -->
+    <section class="container mb-5 snowpro-section">
+        <h2 class="mb-4 text-white">Snowflake Certifications</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">SnowPro Core</h5>
+                        <p class="card-text">Core concepts of Snowflake architecture and features.</p>
+                        <a href="{{ url_for('test', exam_type='snowpro_core') }}" class="btn btn-primary">Start Test</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">SnowPro Advanced</h5>
+                        <p class="card-text">Advanced skills in Snowflake performance and optimization.</p>
+                        <a href="{{ url_for('test', exam_type='snowpro_advanced') }}" class="btn btn-primary">Start Test</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Databricks Section -->
+    <section class="container mb-5 databricks-section">
+        <h2 class="mb-4 text-white">Databricks Certifications</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Databricks Certified Data Engineer Associate</h5>
+                        <p class="card-text">Build and manage data pipelines with Databricks.</p>
+                        <a href="{{ url_for('test', exam_type='databricks_data_engineer') }}" class="btn btn-primary">Start Test</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

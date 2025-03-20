@@ -1,0 +1,87 @@
+body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298); /* Deep blue gradient */
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-section {
+    background: linear-gradient(120deg, #007bff, #00c4cc); /* Vibrant blue to teal */
+    padding: 60px 0;
+    margin-bottom: 40px;
+}
+
+.aws-section {
+    background: linear-gradient(45deg, #ff9900, #ffcc66); /* AWS orange gradient */
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.azure-section {
+    background: linear-gradient(45deg, #0078d4, #00b7c3); /* Azure blue gradient */
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.snowpro-section {
+    background: linear-gradient(45deg, #29b6f6, #81d4fa); /* Snowflake light blue gradient */
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.databricks-section {
+    background: linear-gradient(45deg, #ff6f61, #ffab91); /* Databricks red-orange gradient */
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.85); /* Slightly transparent white */
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+section h2 {
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for readability */
+}
+
+footer {
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.alert-info {
+    background-color: rgba(0, 123, 255, 0.1);
+    border: none;
+    color: #fff;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

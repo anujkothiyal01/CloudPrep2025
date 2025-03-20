@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card p-4 shadow-sm mx-auto" style="max-width: 600px;">
+        <h2 class="text-center">Add a New Question</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="exam_type" class="form-label">Exam Type</label>
+                <select class="form-control" id="exam_type" name="exam_type" required>
+                    {% for exam in exam_types %}
+                        <option value="{{ exam }}">{{ exam.replace('_', ' ').title() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="question_text" class="form-label">Question Text</label>
+                <textarea class="form-control" id="question_text" name="question_text" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="option_a" class="form-label">Option A</label>
+                <input type="text" class="form-control" id="option_a" name="option_a" required>
+            </div>
+            <div class="mb-3">
+                <label for="option_b" class="form-label">Option B</label>
+                <input type="text" class="form-control" id="option_b" name="option_b" required>
+            </div>
+            <div class="mb-3">
+                <label for="option_c" class="form-label">Option C</label>
+                <input type="text" class="form-control" id="option_c" name="option_c" required>
+            </div>
+            <div class="mb-3">
+                <label for="option_d" class="form-label">Option D</label>
+                <input type="text" class="form-control" id="option_d" name="option_d" required>
+            </div>
+            <div class="mb-3">
+                <label for="correct_answer" class="form-label">Correct Answer</label>
+                <input type="text" class="form-control" id="correct_answer" name="correct_answer" required>
+            </div>
+            <button type="submit" class="btn btn-success w-100">Add Question</button>
+        </form>
+    </div>
+{% endblock %}
