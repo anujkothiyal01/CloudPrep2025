@@ -1,30 +1,75 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <div class="card p-4 shadow-sm mx-auto" style="max-width: 600px;">
-        <h2 class="text-center">{{ exam_type.replace('_', ' ').title() }} Practice Test</h2>
-        <form method="POST">
-            {% for question in questions %}
-                <div class="mb-4">
-                    <h5>Question {{ loop.index }}: {{ question.question_text }}</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_a" value="{{ question.option_a }}" required>
-                        <label class="form-check-label" for="opt_{{ question.id }}_a">{{ question.option_a }}</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_b" value="{{ question.option_b }}">
-                        <label class="form-check-label" for="opt_{{ question.id }}_b">{{ question.option_b }}</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_c" value="{{ question.option_c }}">
-                        <label class="form-check-label" for="opt_{{ question.id }}_c">{{ question.option_c }}</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="opt_{{ question.id }}_d" value="{{ question.option_d }}">
-                        <label class="form-check-label" for="opt_{{ question.id }}_d">{{ question.option_d }}</label>
-                    </div>
-                </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-success w-100">Submit Answers</button>
-        </form>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ test_name }} - {{ exam_type | replace('_', ' ') | title }}</h2>
+
+    <!-- Timer Display -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="alert alert-info text-center" role="alert">
+                Time Remaining: <span id="timer">30:00</span>
+            </div>
+        </div>
     </div>
+
+    <!-- Exam Form -->
+    <form id="examForm" method="POST" action="{{ url_for('take_test', test_id=questions[0].test_id) }}">
+        {% for question in questions %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Question {{ loop.index }} of {{ questions | length }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ question.question_text }}</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_a_{{ question.id }}" value="{{ question.option_a }}" required>
+                    <label class="form-check-label" for="option_a_{{ question.id }}">{{ question.option_a }}</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_b_{{ question.id }}" value="{{ question.option_b }}">
+                    <label class="form-check-label" for="option_b_{{ question.id }}">{{ question.option_b }}</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_c_{{ question.id }}" value="{{ question.option_c }}">
+                    <label class="form-check-label" for="option_c_{{ question.id }}">{{ question.option_c }}</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="option_d_{{ question.id }}" value="{{ question.option_d }}">
+                    <label class="form-check-label" for="option_d_{{ question.id }}">{{ question.option_d }}</label>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Submit Exam</button>
+        </div>
+    </form>
+</div>
+
+<!-- JavaScript for Timer -->
+<script>
+    const examDuration = {{ exam_duration }};
+    let timeRemaining = examDuration;
+
+    const timerElement = document.getElementById('timer');
+    const examForm = document.getElementById('examForm');
+
+    function updateTimer() {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeRemaining <= 0) {
+            alert('Time is up! Submitting your exam...');
+            examForm.submit();
+        } else {
+            timeRemaining--;
+            setTimeout(updateTimer, 1000);
+        }
+    }
+
+    updateTimer();
+</script>
 {% endblock %}

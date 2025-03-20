@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Verify Payments</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    {{ message }}<br>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% if access_data %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>User Email</th>
+                    <th>Test Name</th>
+                    <th>Payment Proof</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in access_data %}
+                    <tr>
+                        <td>{{ data.user_email }}</td>
+                        <td>{{ data.test_name }}</td>
+                        <td>
+                            {% if data.access.payment_proof %}
+                                <a href="{{ url_for('static', filename=data.access.payment_proof.split('static/')[1]) }}" target="_blank">View Proof</a>
+                            {% else %}
+                                No proof uploaded
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form method="POST">
+                                <input type="hidden" name="access_id" value="{{ data.access.id }}">
+                                <button type="submit" name="action" value="approve" class="btn btn-success">Approve</button>
+                                <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No pending payment verifications.</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Test Results - {{ exam_type | replace('_', ' ') | title }}</h2>
+    <div class="alert alert-info text-center">
+        <h4>Your Score: {{ score }} / {{ total }}</h4>
+        <p>Percentage: {{ (score / total * 100) | round(2) }}%</p>
+    </div>
+
+    <h3 class="mt-5">Answer Review</h3>
+    {% for answer in user_answers %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>Question {{ loop.index }}</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ answer.question_text }}</p>
+            <p><strong>Your Answer:</strong> {{ answer.user_answer if answer.user_answer else "Not answered" }}</p>
+            <p><strong>Correct Answer:</strong> {{ answer.correct_answer }}</p>
+            <p><strong>Result:</strong>
+                {% if answer.is_correct %}
+                <span class="text-success">Correct</span>
+                {% else %}
+                <span class="text-danger">Incorrect</span>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="text-center">
+        <a href="{{ url_for('tests', exam_type=exam_type) }}" class="btn btn-primary">Back to Tests</a>
+    </div>
+</div>
+{% endblock %}

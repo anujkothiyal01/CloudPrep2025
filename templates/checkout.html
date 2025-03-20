@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Checkout for {{ test.name }}</h2>
+
+    <div class="alert alert-info">
+        <h4>Payment Instructions</h4>
+        <p>Please make a payment of ₹{{ price }} using one of the following methods:</p>
+
+        <h5>Option 1: Pay via QR Code</h5>
+        <p>Scan the QR code below using any UPI app (e.g., Google Pay, PhonePe, Paytm) to pay:</p>
+        <div class="text-center">
+            {% if qr_code_path %}
+                <img src="{{ url_for('static', filename=qr_code_path.split('static/')[1]) }}" alt="UPI QR Code" class="img-fluid" style="max-width: 200px;">
+            {% else %}
+                <p class="text-danger">QR code could not be generated. Please use the UPI ID option below.</p>
+            {% endif %}
+        </div>
+        <p>After scanning and paying, please upload a screenshot of the payment confirmation below.</p>
+
+        <h5>Option 2: Pay via UPI ID</h5>
+        <p>Alternatively, you can pay directly to the following UPI ID:</p>
+        <p><strong>9997305983@ptsbi</strong></p>
+        <p>After making the payment, upload a screenshot or enter the transaction ID below to verify your payment.</p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="payment_proof" class="form-label">Upload Payment Proof (Screenshot or Transaction ID)</label>
+            <input type="file" class="form-control" id="payment_proof" name="payment_proof" accept="image/*" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit Payment Proof</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
